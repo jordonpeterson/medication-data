@@ -35,7 +35,7 @@ from datetime import datetime, timedelta
 import copy
 
 
-def str_to_date(date_str):
+def str_to_date(date_str) -> datetime:
     return datetime.strptime(date_str, '%Y-%m-%d')
 
 
@@ -49,7 +49,7 @@ def calculate_consecutive_fill_periods_for_drugs(med):
     med['concurrentDrugPeriods'] = calculate_overlapping_fill_periods_for_drug(drug_period)
 
 
-def calculate_overlapping_fill_periods_for_drug(fill_periods):
+def calculate_overlapping_fill_periods_for_drug(fill_periods) -> list:
     """
     Calculates lists of concurrent periods out of a list of datetimes
     :param fill_periods: A list of datetimes
@@ -72,7 +72,7 @@ def calculate_overlapping_fill_periods_for_drug(fill_periods):
     return list_of_streaks
 
 
-def calculate_fill_periods_for_drugs(med):
+def calculate_fill_periods_for_drugs(med) -> list:
     """
     Determines what days a patient is estimated to have taken medication on
     :rtype: list of datetimes
@@ -86,7 +86,7 @@ def calculate_fill_periods_for_drugs(med):
     return fill_periods
 
 
-def calculate_overlap_period(end_date, num_days_look_back):
+def calculate_overlap_period(end_date, num_days_look_back) -> list:
     """
     :rtype: list of datetimes
     """
@@ -98,7 +98,7 @@ def calculate_overlap_period(end_date, num_days_look_back):
     return relevant_drug_periods
 
 
-def are_drugs_overlapping(meds, target_drug_groups, min_overlap_days, num_days_lookback, end_date):
+def are_drugs_overlapping(meds, target_drug_groups, min_overlap_days, num_days_lookback, end_date) -> bool:
     """
     :param meds: List of dict presenting a medication.
     :param target_drug_groups: Set. Containing target drug groups.
@@ -117,7 +117,7 @@ def are_drugs_overlapping(meds, target_drug_groups, min_overlap_days, num_days_l
     return False
 
 
-def check_if_periods_overlap(relevant_drug_period, med, min_overlap_days):
+def check_if_periods_overlap(relevant_drug_period, med, min_overlap_days) -> bool:
     """
 
     :param relevant_drug_period: list of days in relevant drug period
